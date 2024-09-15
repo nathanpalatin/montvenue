@@ -5,19 +5,19 @@ import type { Metadata } from 'next'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'Montvenue - Finanças para a vida',
+	title: 'Montvenue - Finanças para a vida'
 }
 
 export default function RootLayout({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body>
+				<Providers>{children}</Providers>
+			</body>
+		</html>
+	)
 }
