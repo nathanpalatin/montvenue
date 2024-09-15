@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'

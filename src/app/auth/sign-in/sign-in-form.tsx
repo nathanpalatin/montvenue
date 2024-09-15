@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
@@ -31,7 +30,7 @@ export function SignInForm() {
 	return (
 		<div className=" text-center">
 			<form onSubmit={handleSubmit} className="mb-5 space-y-4">
-				{success === false && message && (
+				{!success && message && (
 					<Alert variant="destructive">
 						<AlertTriangle className="size-4" />
 						<AlertTitle>Ops, algo deu errado!</AlertTitle>

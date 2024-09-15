@@ -1,19 +1,17 @@
 import { Header } from '@/components/header'
-import { Tabs } from '@/components/tabs'
 
 export default function OrgLayout({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode
 }>) {
-  return (
-    <div>
-      <div className="pt-6">
-        <Header />
-        <Tabs />
-      </div>
+	return (
+		<div>
+			<div className="space-y-4 py-4 px-10">
+				<Header />
+			</div>
 
-      <main className="mx-auto w-full max-w-[1200px] py-4">{children}</main>
-    </div>
-  )
+			<main className="mx-auto w-full px-10 py-4">{children}</main>
+		</div>
+	)
 }

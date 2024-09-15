@@ -15,7 +15,6 @@ export default function SignInPage() {
 				<ThemeSwitcher />
 			</div>
 
-			{/* Ocultar a imagem de fundo em dispositivos menores */}
 			<div className="hidden h-full w-8/12 md:block">
 				<Image
 					alt="background"

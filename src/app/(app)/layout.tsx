@@ -3,20 +3,14 @@ import { redirect } from 'next/navigation'
 import { isAuthenticated } from '@/auth/auth'
 
 export default function AppLayout({
-  children,
-  sheet,
+	children
 }: Readonly<{
-  children: React.ReactNode
-  sheet: React.ReactNode
+	children: React.ReactNode
+	sheet: React.ReactNode
 }>) {
-  if (!isAuthenticated()) {
-    redirect('/auth/sign-in')
-  }
+	if (!isAuthenticated()) {
+		redirect('/auth/sign-in')
+	}
 
-  return (
-    <>
-      {children}
-      {sheet}
-    </>
-  )
+	return <>{children}</>
 }

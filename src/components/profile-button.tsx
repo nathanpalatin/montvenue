@@ -23,7 +23,7 @@ export async function ProfileButton() {
 			<DropdownMenuTrigger className="flex items-center gap-3 outline-none">
 				<div className="flex flex-col items-end">
 					<span className="text-sm font-medium">{user.name}</span>
-					<span className="text-xs text-muted-foreground">{user.email}</span>
+					<span className="text-xs text-muted-foreground">{user.username}</span>
 				</div>
 				<Avatar className="size-8">
 					{user.avatar && <AvatarImage src={user.avatar} />}
@@ -31,7 +31,7 @@ export async function ProfileButton() {
 				</Avatar>
 				<ChevronDown className="size-4 text-muted-foreground" />
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end">
+			<DropdownMenuContent align="end" className="mt-2 border border-zinc-700">
 				<DropdownMenuItem asChild>
 					<a href="/api/auth/sign-out">
 						<LogOut className="mr-2 size-4" />

@@ -7,17 +7,17 @@ export const api = ky.create({
 	hooks: {
 		beforeRequest: [
 			async request => {
-				let token: string | undefined
+				let cookieStore: CookiesFn | undefined
 
 				if (typeof window === 'undefined') {
-					const { cookies } = await import('next/headers')
-					token = cookies().get('token')?.value
-				} else {
-					token = getCookie('token') as string | undefined
+					const { cookies: serverCookies } = await import('next/headers')
+
+					cookieStore = serverCookies
 				}
+				const token = getCookie('token', { cookies: cookieStore })
 
 				if (token) {
-					request.headers.set('Authorization', `Bearer ${token}`)
+					request.headers.set('Authorization', `${token}`)
 				}
 			}
 		]
