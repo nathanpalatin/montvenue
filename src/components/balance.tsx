@@ -21,7 +21,7 @@ export function Balance() {
 	return (
 		<div className="flex gap-3">
 			<h1 className="text-xl text-zinc-600 font-light">/</h1>
-			<h1 className="text-xl font-semibold">R$ 21.495,10</h1>
+			<h1 className="text-xl font-semibold">Dashboard</h1>
 		</div>
 	)
 }

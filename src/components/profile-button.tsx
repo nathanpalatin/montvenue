@@ -35,7 +35,7 @@ export async function ProfileButton() {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="mt-2 border border-zinc-700">
 				<DropdownMenuItem asChild>
-					<a href="/dashboard">
+					<a href="/dashboard/org/montvenue/settings">
 						<Settings className="mr-2 size-4" />
 						Minha conta
 					</a>
