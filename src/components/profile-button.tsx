@@ -1,4 +1,4 @@
-import { ChevronDown, LogOut } from 'lucide-react'
+import { ChevronDown, LogOut, Settings } from 'lucide-react'
 
 import { auth } from '@/auth/auth'
 
@@ -27,15 +27,23 @@ export async function ProfileButton() {
 				</div>
 				<Avatar className="size-8">
 					{user.avatar && <AvatarImage src={user.avatar} />}
-					{user.name && <AvatarFallback>{getInitials(user.name)}</AvatarFallback>}
+					{user.name && (
+						<AvatarFallback className="border border-zinc-500">{getInitials(user.name)}</AvatarFallback>
+					)}
 				</Avatar>
 				<ChevronDown className="size-4 text-muted-foreground" />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="mt-2 border border-zinc-700">
 				<DropdownMenuItem asChild>
+					<a href="/dashboard">
+						<Settings className="mr-2 size-4" />
+						Minha conta
+					</a>
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
 					<a href="/api/auth/sign-out">
 						<LogOut className="mr-2 size-4" />
-						Sign Out
+						Sair
 					</a>
 				</DropdownMenuItem>
 			</DropdownMenuContent>

@@ -7,7 +7,7 @@ import { z } from 'zod'
 import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({
-	credential: z.string().email({ message: 'Por favor, digite um e-mail válido.' }),
+	credential: z.string().min(1),
 	password: z.string().min(1, {
 		message: 'Por favor, digite sua senha'
 	})
@@ -40,6 +40,8 @@ export async function signInWithEmailAndPassword(data: FormData) {
 
 			return { success: false, message, errors: null }
 		}
+
+		console.error(err)
 
 		return {
 			success: false,
