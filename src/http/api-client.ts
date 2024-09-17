@@ -1,6 +1,8 @@
+'use server'
+
 import { getCookie, setCookie } from 'cookies-next'
-import { CookiesFn } from 'cookies-next/lib/types'
 import ky from 'ky'
+import { cookies } from 'next/headers'
 
 let isRefreshing = false
 let refreshSubscribers: Array<(token: string) => void> = []
@@ -9,6 +11,7 @@ interface RefreshTokenResponse {
 	token: string
 	refreshToken: string
 }
+
 function onRefreshed(token: string) {
 	refreshSubscribers.forEach(callback => callback(token))
 	refreshSubscribers = []
@@ -19,14 +22,15 @@ export const api = ky.create({
 	hooks: {
 		beforeRequest: [
 			async request => {
-				let cookieStore: CookiesFn | undefined
+				const isServer = typeof window === 'undefined'
 
-				if (typeof window === 'undefined') {
-					const { cookies: serverCookies } = await import('next/headers')
-					cookieStore = serverCookies
+				let token: string | undefined
+				if (isServer) {
+					const cookieStore = cookies()
+					token = cookieStore.get('token')?.value
+				} else {
+					token = getCookie('token') as string | undefined
 				}
-
-				const token = getCookie('token', { cookies: cookieStore })
 
 				if (token) {
 					request.headers.set('Authorization', `${token}`)
@@ -35,16 +39,25 @@ export const api = ky.create({
 		],
 		afterResponse: [
 			async (_request, _options, response) => {
-				if (response.status === 401) {
-					const originalRequest = _request
+				if (response.status === 403) {
+					const originalRequest = _request.clone()
 
 					if (!isRefreshing) {
 						isRefreshing = true
-						const refreshToken = getCookie('refreshToken')
 
+						let refreshToken: string | undefined
+						if (typeof window === 'undefined') {
+							refreshToken = cookies().get('refreshToken')?.value
+						} else {
+							refreshToken = getCookie('refreshToken') as string | undefined
+						}
+
+						if (!refreshToken) {
+							throw new Error('No refresh token available')
+						}
 						try {
 							const refreshResponse = await ky
-								.patch(`${process.env.NEXT_PUBLIC_API_URL}/token/refresh`, {
+								.patch(`${process.env.NEXT_PUBLIC_API_URL}/users/token/refresh`, {
 									json: { refreshToken }
 								})
 								.json<RefreshTokenResponse>()
@@ -52,15 +65,22 @@ export const api = ky.create({
 							const newToken = refreshResponse.token
 							const newRefreshToken = refreshResponse.refreshToken
 
-							setCookie('token', newToken)
-							setCookie('refreshToken', newRefreshToken)
+							setCookie('token', newToken, { sameSite: true, httpOnly: true, secure: true })
+							setCookie('refreshToken', newRefreshToken, { sameSite: true, httpOnly: true, secure: true })
 
 							onRefreshed(newToken)
 
 							originalRequest.headers.set('Authorization', `${newToken}`)
 							return ky(originalRequest)
 						} catch (error) {
-							console.error('Failed to refresh token', error)
+							console.error('Failed to refresh token:', error)
+
+							if (error.response) {
+								const errorText = await error.response.text()
+								console.error('Response from server:', errorText)
+							}
+
+							throw error
 						} finally {
 							isRefreshing = false
 						}

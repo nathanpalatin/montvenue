@@ -31,7 +31,6 @@ export async function ProfileButton() {
 						<AvatarFallback className="border border-zinc-500">{getInitials(user.name)}</AvatarFallback>
 					)}
 				</Avatar>
-				<ChevronDown className="size-4 text-muted-foreground" />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="mt-2 border border-zinc-700">
 				<DropdownMenuItem asChild>

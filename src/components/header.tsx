@@ -16,7 +16,7 @@ export async function Header() {
 
 			<div className="flex items-center gap-4">
 				<ThemeSwitcher />
-				<Separator orientation="vertical" className="h-8 bg-muted-foreground" />
+				<Separator orientation="vertical" className="h-9 bg-muted-foreground" />
 				<ProfileButton />
 			</div>
 		</div>
