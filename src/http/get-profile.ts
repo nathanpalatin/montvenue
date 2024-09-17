@@ -4,6 +4,7 @@ interface GetProfileResponse {
 	user: {
 		id: string
 		name: string | null
+		role: string
 		username: string
 		avatar: string | null
 	}

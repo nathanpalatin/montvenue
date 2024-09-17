@@ -25,12 +25,16 @@ export async function signInWithEmailAndPassword(data: FormData) {
 	const { credential, password } = result.data
 
 	try {
-		const { token } = await signInWithPassword({
+		const { token, refreshToken } = await signInWithPassword({
 			credential,
 			password
 		})
 
 		cookies().set('token', token, {
+			path: '/'
+		})
+
+		cookies().set('refreshToken', refreshToken, {
 			path: '/',
 			maxAge: 60 * 60 * 24 * 7 // 7 days
 		})
