@@ -1,3 +1,4 @@
+'use server'
 import { api } from './api-client'
 
 interface SignInWithPasswordRequest {
