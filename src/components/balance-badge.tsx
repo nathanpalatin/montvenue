@@ -1,4 +1,5 @@
 'use client'
+
 import { BadgeDollarSignIcon } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { getBalance } from '@/http/get-balance'
@@ -24,7 +25,7 @@ export function BalanceBadge() {
 					currencyDisplay: 'symbol'
 				})}
 			</h1>
-			<h1 className="text-xl text-zinc-500">Saldo na conta</h1>
+			<h1 className="text-xl text-zinc-500">Balance</h1>
 		</div>
 	)
 }
