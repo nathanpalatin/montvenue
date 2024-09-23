@@ -3,7 +3,11 @@ import { redirect } from 'next/navigation'
 import { isAuthenticated } from '@/auth/auth'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+	title: 'Dashboard | Montvenue - Finanças para a vida'
+}
 export default function AppLayout({
 	children,
 	sheet
