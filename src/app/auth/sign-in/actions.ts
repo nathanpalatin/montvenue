@@ -7,7 +7,9 @@ import { z } from 'zod'
 import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({
-	credential: z.string().min(1),
+	credential: z.string().min(1, {
+		message: 'Por favor, digite seu login.'
+	}),
 	password: z.string().min(1, {
 		message: 'Por favor, digite sua senha'
 	})

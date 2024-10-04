@@ -33,7 +33,7 @@ export function NotificationsBadge() {
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="center" className="border-zinc-800 w-[280px]">
+			<DropdownMenuContent align="center" className="border-zinc-800 backdrop-blur-lg bg-zinc-800/70 w-[280px]">
 				<DropdownMenuLabel>Notificações</DropdownMenuLabel>
 				{data.notifications.length === 0 && (
 					<p className="text-muted-foreground text-xs p-2">Nenhuma notificação no momento.</p>

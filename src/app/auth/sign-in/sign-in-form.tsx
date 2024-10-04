@@ -77,7 +77,7 @@ export function SignInForm() {
 				</div>
 
 				<Button
-					className="w-full rounded-lg bg-zinc-800 text-zinc-200 hover:bg-zinc-900"
+					className="w-full rounded bg-zinc-800 text-zinc-200 hover:bg-zinc-900"
 					type="submit"
 					disabled={isPending}
 				>
@@ -85,9 +85,8 @@ export function SignInForm() {
 				</Button>
 
 				<Button
-					className=" w-full rounded-lg border-2 border-zinc-800 bg-zinc-100 p-2 hover:bg-zinc-200 dark:hover:bg-zinc-900 "
+					className=" w-full rounded border-2 border-zinc-800 bg-zinc-100  hover:bg-zinc-200 dark:hover:bg-zinc-900 "
 					variant="link"
-					size="sm"
 					asChild
 				>
 					<Link href="/auth/sign-up" className="text-zinc-700 hover:no-underline dark:hover:text-zinc-200">

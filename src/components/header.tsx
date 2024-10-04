@@ -6,6 +6,7 @@ import { Separator } from './ui/separator'
 import { SearchHeader } from './search-header'
 import { ProfileButton } from './profile-button'
 import { NotificationsBadge } from './notifications-badge'
+import { MainMenu } from './navigation-menu'
 
 export function Header() {
 	return (
@@ -15,6 +16,7 @@ export function Header() {
 					<h1 className="text-2xl font-semibold text-zinc-600">Dashboard</h1>
 				</Link>
 				<SearchHeader />
+				<MainMenu />
 			</div>
 
 			<div className="flex items-center gap-3">

@@ -1,4 +1,4 @@
-import { ChevronDown, LogOut, Settings } from 'lucide-react'
+import { ChevronDown, ChevronUp, LogOut, Settings } from 'lucide-react'
 
 import { auth } from '@/auth/auth'
 
@@ -20,7 +20,7 @@ export async function ProfileButton() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className="flex items-center gap-3 outline-none">
+			<DropdownMenuTrigger className="flex group items-center gap-3 outline-none">
 				<div className="flex flex-col items-end">
 					<span className="text-sm leading-4 font-medium">{user.name}</span>
 					<span className="text-xs text-muted-foreground">{user.username}</span>
@@ -31,6 +31,10 @@ export async function ProfileButton() {
 						<AvatarFallback className="border border-zinc-500">{getInitials(user.name)}</AvatarFallback>
 					)}
 				</Avatar>
+				<ChevronDown
+					className="relative top-[1px] ml-1 h-4 w-4 transition duration-200 group-data-[state=open]:rotate-180"
+					aria-hidden="true"
+				/>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="mt-2 border border-zinc-700">
 				<DropdownMenuItem asChild>

@@ -6,23 +6,22 @@ import { getBalance } from '@/http/get-balance'
 import { LoadingBalanceBadge } from './loading-balance-badge'
 
 export function BalanceBadge() {
-	const { data, isLoading } = useQuery({
+	const { data, isFetching } = useQuery({
 		queryKey: ['balances'],
 		queryFn: () => getBalance()
 	})
 
-	if (isLoading) {
+	if (isFetching) {
 		return <LoadingBalanceBadge />
 	}
 
 	return (
 		<div className="space-y-2 dark:bg-zinc-900 bg-zinc-200 shadow rounded-xl px-10 py-4">
 			<BadgeDollarSignIcon />
-
 			<h1 className="text-3xl font-semibold">
-				{data.balances.balance.toLocaleString('pt-br', {
+				{(data ? data.balances.balance : 0).toLocaleString('pt-br', {
 					style: 'currency',
-					currency: data.balances.coinType,
+					currency: data ? data.balances.coinType : 'BRL',
 					currencyDisplay: 'symbol'
 				})}
 			</h1>

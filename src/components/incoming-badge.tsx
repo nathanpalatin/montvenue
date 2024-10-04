@@ -20,7 +20,7 @@ export function IncomingBadge() {
 			<WalletMinimal />
 
 			<h1 className="text-3xl font-semibold">
-				{(data.balances.balance / 14).toLocaleString('pt-br', {
+				{(data ? data.balances.balance / 14 : 0).toLocaleString('pt-br', {
 					style: 'currency',
 					currency: data.balances.coinType,
 					currencyDisplay: 'symbol'
