@@ -18,8 +18,8 @@ export default function SignInPage() {
 
 			<div className="hidden h-full w-8/12 md:block">
 				<BlurImageWithText
-					logo={logo}
-					src={backgroundHome}
+					logo={logo.src}
+					src={backgroundHome.src}
 					alt="Background Image"
 					initialBlurDelay={1200}
 					textAppearDelay={2000}
