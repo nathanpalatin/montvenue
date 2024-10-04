@@ -29,13 +29,13 @@ export function SidebarToggle() {
 						<ul>
 							<li className="flex items-center gap-2">
 								<div className="w-2 h-2 bg-zinc-500" />
-								<a href="#" className="text-muted-foreground text-sm">
+								<a href="/" className="text-muted-foreground text-sm">
 									Inicial
 								</a>
 							</li>
 							<li className="flex items-center gap-2">
 								<div className="w-2 h-2 bg-zinc-500" />
-								<a href="#" className="text-muted-foreground text-sm">
+								<a href="/recommendations" className="text-muted-foreground text-sm">
 									Análises e recomendações
 								</a>
 							</li>
@@ -101,7 +101,7 @@ export function SidebarToggle() {
 			<button
 				onClick={toggleSidebar}
 				className={`absolute top-6 ${
-					isSidebarOpen ? 'left-60 rotate-180' : '-left-4'
+					isSidebarOpen ? 'left-60 rotate-180' : '-left-3'
 				} z-50 p-1 bg-muted-foreground transition-all duration-300 text-white rounded-full`}
 			>
 				<ChevronRight />
